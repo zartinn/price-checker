@@ -1,0 +1,12 @@
+{
+  "defaultProject": "priceChecker",
+  "projects": {
+    "priceChecker": {
+      "name": "Schnäppchenjäger",
+      "integrations": {
+        "cordova": {}
+      },
+      "type": "angular"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Queries
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="setup">
+    <div class="items">
+      <ion-item>
+        <ion-label position="stacked">product</ion-label>
+        <ion-input #product placeholder="iphone 11"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">min price</ion-label>
+        <ion-input #minprice placeholder="0" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">max price</ion-label>
+        <ion-input #maxprice placeholder="800" type="number"></ion-input>
+      </ion-item>
+    </div>
+    <ion-button
+    (click)="addQuery(product.value, minprice.value, maxprice.value)"
+    disabled="{{ product.value === '' || minprice.value === '' || maxprice.value === ''}}"
+    >add
+  </ion-button>
+  </div>
+  <div class="queries">
+    <ion-label>Registered queries ({{queries.length}})</ion-label>
+    <ion-list>
+      <ion-item>
+        <ion-label>Product</ion-label>
+        <ion-label>min price</ion-label>
+        <ion-label>max price</ion-label>
+        <ion-label></ion-label>
+      </ion-item>
+      <ion-item *ngFor="let query of queries">
+        <ion-label>{{query.product}}</ion-label>
+        <ion-label>{{query.minPrice}}</ion-label>
+        <ion-label>{{query.maxPrice}}</ion-label>
+        <ion-button (click)="deleteQuery(query.id)">delete</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

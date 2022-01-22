@@ -1,0 +1,29 @@
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "bool": {
+                        "should": [],
+                        "minimum_should_match": "1"
+                    }
+                }
+            ]
+        }
+    },
+    "size": 300,
+    "_source": {
+        "includes": [
+            "*"
+        ],
+        "excludes": []
+    },
+    "from": 0,
+    "sort": [
+        {
+            "crawling": {
+                "order": "desc"
+            }
+        }
+    ]
+}

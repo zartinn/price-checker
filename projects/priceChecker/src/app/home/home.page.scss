@@ -1,0 +1,26 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+ion-list ion-item {
+  :first-child {
+    flex-grow: 4;
+  }
+}
+
+.price-label {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  :not(:first-child) {
+    font-size: 10pt;
+    color: gray;
+  }
+  :nth-child(2) {
+    text-decoration: line-through;
+  }
+  :last-child {
+    color: orangered;
+  }
+}

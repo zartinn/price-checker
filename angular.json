@@ -1,0 +1,177 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1, 
+  "newProjectRoot": "projects",
+  "projects": {
+    "priceChecker": {
+      "root": "projects/priceChecker",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "www",
+            "index": "projects/priceChecker/src/index.html",
+            "main": "projects/priceChecker/src/main.ts",
+            "polyfills": "projects/priceChecker/src/polyfills.ts",
+            "tsConfig": "projects/priceChecker/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/priceChecker/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
+            ],
+            "styles": [
+              {
+                "input": "projects/priceChecker/src/theme/variables.scss"
+              },
+              {
+                "input": "projects/priceChecker/src/global.scss"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/priceChecker/src/environments/environment.ts",
+                  "with": "projects/priceChecker/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "ci": {
+              "progress": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "priceChecker:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "priceChecker:build:production"
+            },
+            "ci": {
+              "progress": false
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "priceChecker:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/priceChecker/src/test.ts",
+            "polyfills": "projects/priceChecker/src/polyfills.ts",
+            "tsConfig": "projects/priceChecker/tsconfig.spec.json",
+            "karmaConfig": "projects/priceChecker/karma.conf.js",
+            "styles": [],
+            "scripts": [],
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/priceChecker/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/priceChecker/src/assets",
+                "output": "/assets"
+              }
+            ]
+          },
+          "configurations": {
+            "ci": {
+              "progress": false,
+              "watch": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "priceChecker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "priceChecker:serve:production"
+            },
+            "ci": {
+              "devServerTarget": "priceChecker:serve:ci"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "priceChecker:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "priceChecker:build:production"
+            }
+          }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "port": 8100,
+            "cordovaBuildTarget": "priceChecker:ionic-cordova-build",
+            "devServerTarget": "priceChecker:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "priceChecker:ionic-cordova-build:production",
+              "devServerTarget": "priceChecker:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "priceChecker"
+}

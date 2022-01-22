@@ -1,0 +1,23 @@
+.setup {
+    display: flex;
+    align-items: center;
+    .items {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    ion-button {
+        margin: 0 30px;
+    }
+}
+
+.queries {
+    >ion-label {
+        font-weight: bold;
+        margin-left: 16px;
+    }
+    ion-item:first-of-type {
+        font-weight: bold;
+    }
+    margin-top: 30px;
+}

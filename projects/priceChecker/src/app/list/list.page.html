@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="item">
+    <ion-item>
+      <ion-label position="stacked">Backend server ({{status}})</ion-label>
+      <ion-input #server placeholder="localhost:5000" value="{{config.serverAddress}}"></ion-input>
+    </ion-item>
+    <ion-button (click)="saveServer(server.value)" disabled="{{server.value === config.serverAddress}}">change</ion-button>
+  </div>
+  <div class="item">
+    <ion-item>
+      <ion-label position="stacked">Search interval (minimum 30s)</ion-label>
+      <ion-input #interval type="number" min="30" placeholder="30" value="{{config.searchInterval$ | async}}"></ion-input>
+    </ion-item>
+    <ion-button
+      (click)="saveInterval(interval.value)"
+      disabled="{{ interval.value === config.searchInterval?.toString()}}"
+      >change</ion-button>
+  </div>
+</ion-content>
